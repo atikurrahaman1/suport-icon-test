@@ -57,10 +57,16 @@
     © 2026 | AutoSupport AI Neural Gateway Test
 </footer>
 
-<!-- AutoSupport AI: Neural Gateway Integration -->
-<div id="as-ai-root"></div>
-<script src="https://suport-nine.vercel.app/AI.js" data-as-id="usr_k9sb0iz8p"></script>
-<!-- End Integration -->
+<!-- AutoSupport AI: Secure Gateway -->
+<iframe src="support.html" style="position:fixed; bottom:0; right:0; width:400px; height:700px; border:none; z-index:2147483647; pointer-events:none;" id="as-ai-iframe"></iframe>
+<script>
+  // আইফ্রেম ইন্টারঅ্যাকশন হ্যান্ডলার
+  window.addEventListener('message', (e) => {
+    const iframe = document.getElementById('as-ai-iframe');
+    if(e.data === 'open_chat') iframe.style.pointerEvents = 'auto';
+    if(e.data === 'close_chat') iframe.style.pointerEvents = 'none';
+  });
+</script>
 
 </body>
 </html>
