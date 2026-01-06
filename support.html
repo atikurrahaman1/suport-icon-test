@@ -3,49 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Support Engine</title>
+    <title>AI Neural Support</title>
     <style>
         body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background: transparent; }
         
+        /* ফ্লোটিং আইকন ডিজাইন */
         #support-icon-right {
             position: fixed;
             right: 20px;
             bottom: 20px;
-            width: 75px;
-            height: 75px;
+            width: 70px;
+            height: 70px;
             background: linear-gradient(135deg, #2563eb, #1e40af);
             border-radius: 50%;
-            box-shadow: 0 15px 35px rgba(37, 99, 235, 0.4);
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 38px;
+            font-size: 35px;
             cursor: pointer;
-            z-index: 9999999;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 99999999;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             border: 4px solid white;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
         }
-        #support-icon-right:hover { transform: scale(1.1) rotate(10deg); }
+        #support-icon-right:hover { transform: scale(1.1) rotate(5deg); box-shadow: 0 15px 35px rgba(37, 99, 235, 0.6); }
         #support-icon-right:active { transform: scale(0.9); }
-        
+
         #as-ai-root { width: 100%; height: 100%; }
     </style>
 </head>
 <body>
+    <!-- আইকনটি এখানেই লোড হচ্ছে -->
     <div id="support-icon-right" onclick="triggerOpen()">💬</div>
+    
+    <!-- রিঅ্যাক্ট চ্যাটবক্স এখানেই রেন্ডার হবে -->
     <div id="as-ai-root"></div>
 
     <script>
-        // চ্যাটবক্স ওপেন করার ফাংশন
+        // চ্যাটবক্স ওপেন করার সিগন্যাল
         function triggerOpen() {
+            console.log("AutoSupport: Triggering chat open...");
+            
+            // ১. গ্লোবাল স্টেট সেট করা
+            window.AS_AI_FORCE_OPEN = true;
+            
+            // ২. ইভেন্ট ব্রডকাস্ট করা
             window.postMessage('OPEN_AS_AI', '*');
-            // ইন্টারনাল রিঅ্যাক্ট ইভেন্ট ট্রিগার
+            
+            // ৩. কাস্টম ইভেন্ট ফায়ার করা (রিঅ্যাক্ট লিসেনার এর জন্য)
             const event = new CustomEvent('as-ai-open', { detail: 'OPEN_AS_AI' });
             window.dispatchEvent(event);
+            
+            // আইকনটি সাথে সাথে হাইড করা
+            document.getElementById('support-icon-right').style.display = 'none';
         }
 
-        // গেটওয়ে কনফিগ
+        // আপনার ড্যাশবোর্ডের আইডি এবং তথ্য ইনজেক্ট করা হচ্ছে
         window.AS_AI_CONFIG = {
             authorized: true,
             userId: "usr_k9sb0iz8p",
@@ -53,6 +69,7 @@
         };
     </script>
     
-    <script src="https://suport-nine.vercel.app/AI.js"></script>
+    <!-- আপনার মেইন চ্যাট স্ক্রিপ্ট লোড করা হচ্ছে -->
+    <script src="https://suport-nine.vercel.app/index.tsx" type="module"></script>
 </body>
 </html>
