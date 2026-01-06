@@ -56,7 +56,27 @@
 <footer>
     © 2026 | AutoSupport AI Neural Gateway Test
 </footer>
+<!-- AutoSupport AI: Main Site Snippet -->
+<iframe id="as-ai-iframe" src="support.html" 
+  style="position:fixed; bottom:0; right:0; width:120px; height:130px; border:none; z-index:2147483647; transition: all 0.4s ease; overflow:hidden;" 
+  allowTransparency="true"></iframe>
 
+<script>
+  window.addEventListener('message', function(e) {
+    const frame = document.getElementById('as-ai-iframe');
+    if (frame && e.data.type === 'AS_AI_RESIZE') {
+      if (e.data.isOpen) {
+        frame.style.width = '450px';
+        frame.style.height = '750px';
+        frame.style.maxWidth = '100vw';
+        frame.style.maxHeight = '100vh';
+      } else {
+        frame.style.width = '120px';
+        frame.style.height = '130px';
+      }
+    }
+  });
+</script>
 
 </body>
 </html>
