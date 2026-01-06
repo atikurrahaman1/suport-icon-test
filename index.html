@@ -63,22 +63,7 @@
   allowTransparency="true" scrolling="no"></iframe>
 
 <script>
-  window.addEventListener('message', function(e) {
-    const frame = document.getElementById('as-ai-iframe');
-    if (!frame || !e.data || e.data.type !== 'AS_AI_RESIZE') return;
-    
-    if (e.data.isOpen) {
-      // চ্যাট ওপেন হলে আইফ্রেম ফুল সাইজ হবে
-      frame.style.width = '440px';
-      frame.style.height = '720px';
-      frame.style.maxWidth = '100vw';
-      frame.style.maxHeight = '100vh';
-    } else {
-      // চ্যাট ক্লোজ হলে আইফ্রেম আইকনের সাইজে ফিরে আসবে
-      frame.style.width = '110px';
-      frame.style.height = '130px';
-    }
-  });
+ 
 </script>
 
 </body>
