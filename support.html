@@ -3,44 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Secure AI Node</title>
+    <title>AI Support Engine</title>
     <style>
-        body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background: transparent; font-family: sans-serif; }
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background: transparent; }
         
         #support-icon-right {
             position: fixed;
             right: 20px;
-            bottom: 30px;
-            width: 70px;
-            height: 70px;
+            bottom: 20px;
+            width: 75px;
+            height: 75px;
             background: linear-gradient(135deg, #2563eb, #1e40af);
             border-radius: 50%;
-            box-shadow: 0 12px 30px rgba(37, 99, 235, 0.4);
+            box-shadow: 0 15px 35px rgba(37, 99, 235, 0.4);
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 35px;
+            font-size: 38px;
             cursor: pointer;
-            z-index: 999999;
+            z-index: 9999999;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 3px solid rgba(255,255,255,0.2);
-            -webkit-tap-highlight-color: transparent;
+            border: 4px solid white;
         }
-        #support-icon-right:hover { transform: scale(1.1) rotate(5deg); box-shadow: 0 15px 35px rgba(37, 99, 235, 0.5); }
+        #support-icon-right:hover { transform: scale(1.1) rotate(10deg); }
         #support-icon-right:active { transform: scale(0.9); }
+        
+        #as-ai-root { width: 100%; height: 100%; }
     </style>
 </head>
 <body>
-    <div id="support-icon-right">💬</div>
+    <div id="support-icon-right" onclick="triggerOpen()">💬</div>
     <div id="as-ai-root"></div>
 
-    <!-- প্ল্যাটফর্ম মেইন স্ক্রিপ্ট (এপিআই কী সরাসরি এখানে নেই) -->
-    <script src="https://suport-nine.vercel.app/AI.js" data-as-id="usr_k9sb0iz8p"></script>
-
     <script>
-        // সিকিউরিটি হ্যান্ডশেক
-        console.log("AutoSupport AI Node: Fully Verified.");
+        // চ্যাটবক্স ওপেন করার ফাংশন
+        function triggerOpen() {
+            window.postMessage('OPEN_AS_AI', '*');
+            // ইন্টারনাল রিঅ্যাক্ট ইভেন্ট ট্রিগার
+            const event = new CustomEvent('as-ai-open', { detail: 'OPEN_AS_AI' });
+            window.dispatchEvent(event);
+        }
+
+        // গেটওয়ে কনফিগ
+        window.AS_AI_CONFIG = {
+            authorized: true,
+            userId: "usr_k9sb0iz8p",
+            businessInfo: {"name":"AutoSupport AI","address":"","phone":"","whatsapp":"","workingHours":"","about":"","email":"a@gmail.com","products":[],"services":[],"faqs":[]}
+        };
     </script>
+    
+    <script src="https://suport-nine.vercel.app/AI.js"></script>
 </body>
 </html>
