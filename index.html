@@ -56,23 +56,23 @@
 <footer>
     © 2026 | AutoSupport AI Neural Gateway Test
 </footer>
-<!-- AutoSupport AI: Main Site Snippet -->
+<!-- AutoSupport AI: Main Gateway Snippet -->
 <iframe id="as-ai-iframe" src="support.html" 
-  style="position:fixed; bottom:0; right:0; width:120px; height:130px; border:none; z-index:2147483647; transition: all 0.4s ease; overflow:hidden;" 
+  style="position:fixed; bottom:0; right:0; width:110px; height:120px; border:none; z-index:2147483647; transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); overflow:hidden;" 
   allowTransparency="true"></iframe>
 
 <script>
   window.addEventListener('message', function(e) {
     const frame = document.getElementById('as-ai-iframe');
-    if (frame && e.data.type === 'AS_AI_RESIZE') {
+    if (frame && e.data && e.data.type === 'AS_AI_RESIZE') {
       if (e.data.isOpen) {
+        // চ্যাট ওপেন হলে আইফ্রেম বড় হবে
         frame.style.width = '450px';
         frame.style.height = '750px';
-        frame.style.maxWidth = '100vw';
-        frame.style.maxHeight = '100vh';
       } else {
-        frame.style.width = '120px';
-        frame.style.height = '130px';
+        // চ্যাট ক্লোজ হলে আইফ্রেম আইকনের সাইজে ফিরে আসবে
+        frame.style.width = '110px';
+        frame.style.height = '120px';
       }
     }
   });
